@@ -1,0 +1,95 @@
+
+<div class="col-sm-12">
+    
+    <table class="table" style="margin:50px;">
+        <thead>
+            <tr>
+                <th class="table-title text-center">
+                    No.
+                </th>
+                <th class="table-title act-width text-center">
+                    User Name
+                </th>
+                <th class="table-title act-width text-center">
+                    PhoneNo
+                </th>
+                <th class="table-title act-width text-center">
+                    Email
+                </th>
+                <th class="table-title act-width text-center">
+                    Nrc
+                </th>
+                <th class="table-title act-width text-center">
+                  Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="userList.length === 0">
+                <td colspan="6">No available</td>
+            </tr>
+            <tr *ngFor="let user of userList;let i=index">
+                <td class="text-center">{{ i+1 }}</td>
+                <td class="text-center">{{ user.name }}</td>
+                <td class="text-center">{{ user.phno }}</td>
+                <td class="text-center">{{ user.email }}</td>
+                <td class="text-center">{{ user.nrc }}</td>
+                <td class="text-center">
+                  <button class="btn btn-danger btn pl-3px" (click)="openDelete(content,user.id)">Delete</button> | 
+                  <button class="btn btn-info btn" (click)="openEdit(contentEdit,user)">Edit</button>
+                </td>    
+                 
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">    
+    <div class="modal-header">    
+        <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>    
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">    
+            <span aria-hidden="true">×</span>    
+        </button>    
+    </div>    
+    <div class="modal-body">    
+        <p>Are you sure to delete user?</p>    
+    </div>    
+    <div class="modal-footer">    
+        <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Cancel</button>    
+        <button type="button" class="btn btn-outline-dark" (click)="c('yes')">Yes</button>    
+    </div>    
+</ng-template>    
+
+<ng-template #contentEdit let-c="close" let-d="dismiss"  >  
+
+        <h2 class="h2" style="padding: 10px;">User Update Form</h2> 
+        <form [formGroup]="editForm" style="padding:10px 40px;">
+           
+            <div class="form-group">
+                <label>Name</label>
+              <input type="text" class="form-control" formControlName="name">
+                               
+            </div>
+            <div class="form-group">
+                <label>PhoneNo</label>
+                <input type="text" class="form-control" formControlName="phno" >
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+              <input type="text" class="form-control" formControlName="email" >
+    
+            </div>
+            <div class="form-group">
+                <label>Nrc No</label>
+              <input type="text" class="form-control" formControlName="nrc" >
+            </div>
+            <div class='modal-footer'>
+                <button type="button" class="btn btn-primary" (click)="c('yes')">Submit</button> 
+               
+            </div>
+           
+          </form>
+          
+</ng-template>
+

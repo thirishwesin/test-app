@@ -1,0 +1,104 @@
+<div class="container">
+  <h2 class="h2">User Register Form</h2>
+<form [formGroup]="userForm" style="padding:0 100px;">
+    <div class="form-group">
+        <label>Name</label>
+      <input type="text" class="form-control" formControlName="name" [(ngModel)]="user.name" >
+      <span *ngIf="(userForm.controls['name'].dirty || userForm.controls['name'].touched) && userForm.controls['name'].invalid && userForm.controls['name'].errors?.['required']"  class="error-msg">
+        * User Name field is required..
+      </span>
+      <span *ngIf="(userForm.controls['name'].dirty || userForm.controls['name'].touched) && userForm.controls['name'].invalid && userForm.controls['name'].errors?.['pattern']"  class="error-msg">
+      * First Letter may be UpperCase..
+      </span>
+      <span *ngIf="(userForm.controls['name'].dirty || userForm.controls['name'].touched) && userForm.controls['name'].invalid && userForm.controls['name'].hasError('duplicateTeamName')"  class="error-msg">
+        * Duplicate User Name..
+        </span>
+                       
+    </div>
+    <div class="form-group">
+        <label>PhoneNo</label>
+        <input type="text" class="form-control" [(ngModel)]="user.phno" formControlName="phno" NumbersOnly>
+
+          <span *ngIf="(userForm.controls['phno'].dirty || userForm.controls['phno'].touched) && userForm.controls['phno'].invalid && userForm.controls['phno'].errors?.['required']"  class="error-msg">
+            * phno field is required.
+          </span>
+          <span *ngIf="(userForm.controls['phno'].dirty || userForm.controls['phno'].touched) && userForm.controls['phno'].invalid && userForm.controls['phno'].errors?.['minlength']"  class="error-msg">
+            * PhoneNo must be at least 7 Digits.
+          </span>
+          <span *ngIf="(userForm.controls['phno'].dirty || userForm.controls['phno'].touched) && userForm.controls['phno'].invalid && userForm.controls['phno'].errors?.['maxlength']"  class="error-msg">
+            * PhoneNo must be at max 10 Digits.
+          </span>
+        
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+      <input type="text" class="form-control" formControlName="email" [(ngModel)]="user.email" >
+      <span class="error-msg" *ngIf="userForm.controls['email'].hasError('required') &&
+      (userForm.controls['email'].dirty ||
+      userForm.controls['email'].touched) && formSubmitted">
+          * Email field is required
+      </span>
+      <span class="error-msg" *ngIf="
+      (userForm.controls['email'].dirty ||
+      userForm.controls['email'].touched)&& userForm.controls['email'].errors?.['pattern']  && formSubmitted ">
+           * Enter valid Email
+      </span>
+    </div>
+    <div class="form-group">
+        <label>Nrc No</label>
+      <input type="text" class="form-control" formControlName="nrc" [(ngModel)]="user.nrc">
+      <span class="error-msg" *ngIf="userForm.controls['nrc'].hasError('required') &&
+      (userForm.controls['nrc'].dirty ||
+      userForm.controls['nrc'].touched && formSubmitted )">
+           * NrcNo field is required
+      </span>
+    </div>
+    <button type="submit" class="btn btn-success waves-effect waves-light mt-3" (click)="register()">
+      Submit
+    </button>
+  </form>
+
+  <!-- <div class="col-sm-12">
+    
+        <table class="table" style="margin:50px;">
+            <thead>
+                <tr>
+                    <th class="table-title text-center">
+                        No.
+                    </th>
+                    <th class="table-title act-width text-center">
+                        User Name
+                    </th>
+                    <th class="table-title act-width text-center">
+                        PhoneNo
+                    </th>
+                    <th class="table-title act-width text-center">
+                        Email
+                    </th>
+                    <th class="table-title act-width text-center">
+                        Nrc
+                    </th>
+                    <th class="table-title act-width text-center">
+                      Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="currentUsers.length === 0">
+                    <td colspan="4">No available</td>
+                </tr>
+                <tr *ngFor="let user of currentUsers;let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.phno }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.nrc }}</td>
+                    <td>
+                      <button class="btn btn-info" (click)="deleteUser(user.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+</div> -->
+</div>
