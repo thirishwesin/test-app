@@ -19,13 +19,19 @@ export class UserComponent implements OnInit {
   editdata: any;
   editForm!: FormGroup;
   user: User = cloneDeep(initUser);
+  dtOptions: DataTables.Settings = {};
   constructor(private fb: FormBuilder,private route: ActivatedRoute,public service:RegisterService, private router : Router,private modalService: NgbModal) { 
 
   }
 
 
   ngOnInit(): void {
-
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      lengthMenu: [ 5, 10 ,25 ],
+      pageLength: 10,
+      processing: true
+    };
     // this.route.params.subscribe(params => {
     // console.log(params['userId']);
       

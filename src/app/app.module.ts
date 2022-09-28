@@ -10,7 +10,7 @@ import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     RouterModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
